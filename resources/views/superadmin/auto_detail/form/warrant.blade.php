@@ -9,13 +9,6 @@ Form Auto Detailing - SPK Pekerjaan
 @section('content')
 <div class="content">
     <div class="container">
-        <div class="alert alert-danger alert-dismissible fade show">
-            <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
-                aria-label="Close">
-                <i class="nc-icon nc-simple-remove"></i>
-            </button>
-            <span>This is a notification with close button.</span>
-        </div>
 
         <h6>Alur Pengerjaan</h6>
         <div class="card-group">
@@ -109,79 +102,82 @@ Form Auto Detailing - SPK Pekerjaan
 
         <div class="card mt-4">
             <div class="card-header text-center mt-4">
-                <h5><b>Dokumen Invoice Down Payment</b></h5>
+                <h5><b>Dokumen Surat Perintah Kerja</b></h5>
             </div>
             <div class="card-body">
-                <form action="" class="mt-2">
-                    <h6 class="mb-3">Informasi Data Diri</h6>
+                <form action="{{ route('superadmin.form.warrant.store', $autoDetail->id) }}" class="mt-2" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="customer_name" class="text-dark">Nama Customer</label>
-                                <input name="customer_name" type="text" class="bg-light form-control @error('customer_name') is-invalid @enderror" value="{{old('customer_name')}}" required>
-                                @include('layouts.error', ['errorName' => 'customer_name'])
+                                <input type="text" class="form-control" value="{{old('customer_name', $autoDetail->customer->name ?? '')}}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="order_id" class="text-dark">ORDER ID</label>
-                                <input name="order_id" type="text" class="bg-light form-control @error('order_id') is-invalid @enderror" value="{{old('order_id')}}" required>
-                                @include('layouts.error', ['errorName' => 'order_id'])
+                                <input type="text" class="form-control" value="{{old('order_id', $autoDetail->order_id)}}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label name="product_id" class="text-dark">Produk Yang Dipilih</label>
-                                <select name="product_id" id="" class="bg-light form-control @error('product_id') is-invalid @enderror" value="{{old('product_id')}}">
-                                    <option value="">A</option>
-                                    <option value="">B</option>
-                                    <option value="">C</option>
+                                <label for="product_id" class="text-dark">Produk Yang Dipilih</label>
+                                <select name="product_id" id="product_id" class="form-control" disabled>
+                                    <option value="{{ $autoDetail->product->id }}">{{ $autoDetail->product->name }}</option>
                                 </select>
-                                @include('layouts.error', ['errorName' => 'product_id'])
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="dp_date" class="text-dark">Estimasi Waktu</label>
-                                <input name="dp_date" type="date" class="bg-light form-control @error('dp_date') is-invalid @enderror" value="{{old('dp_date')}}" required>
-                                @include('layouts.error', ['errorName' => 'dp_date'])
+                                <label for="estimate" class="text-dark">Estimasi Waktu</label>
+                                <input name="estimate" type="date" class="bg-light form-control @error('estimate') is-invalid @enderror" value="{{old('estimate', $autoDetail->estimate)}}" required>
+                                @include('layouts.error', ['errorName' => 'estimate'])
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="product_facilities" class="text-dark">Fasilitas Produk</label>
-                                <input type="text" name="product_facilities" class="bg-light form-control @error('product_facilities') is-invalid @enderror" value="{{old('product_facilities')}}" required></input>
-                                @include('layouts.error', ['errorName' => 'product_facilities'])
+                                <input type="text" class="form-control" value="{{old('product_facilities', $autoDetail->product->facility)}}" disabled>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="note" class="text-dark">Catatan Tambahan</label>
-                                <input type="note" name="note" class="bg-light form-control @error('note') is-invalid @enderror" value="{{old('note')}}" required></input>
-                                @include('layouts.error', ['errorName' => 'note'])
+                                <label for="warrant_notes" class="text-dark">Catatan Tambahan</label>
+                                <input type="warrant_notes" name="warrant_notes" class="bg-light form-control @error('warrant_notes') is-invalid @enderror" value="{{old('warrant_notes',$autoDetail->warrant_notes)}}" required>
+                                @include('layouts.error', ['errorName' => 'warrant_notes'])
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="dp" class="text-dark">Nama Crew</label>
-                                <input name="dp" type="text" class="bg-light form-control @error('dp') is-invalid @enderror" value="{{old('type')}}" required>
-                                @include('layouts.error', ['errorName' => 'type'])
+                                <label for="crew_id" class="text-dark">Nama Crew</label>
+                                <select name="crew_id" id="" class="bg-light form-control @error('crew_id') is-invalid @enderror" value="{{old('crew_id')}}" required>
+                                    @foreach ($crews as $crew)
+                                        <option value="{{ $crew->id }}" {{ old('crew_id', $crew->id) == $crew->id ? 'selected' : '' }}>{{ $crew->name }}</option>
+                                    @endforeach
+                                </select>
+                                @include('layouts.error', ['errorName' => 'crew_id'])
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="insufficient_payment" class="text-dark">Nama PIC</label>
-                                <input name="insufficient_payment" type="text" class="bg-light form-control @error('insufficient_payment') is-invalid @enderror" value="{{old('insufficient_payment')}}" required>
-                                @include('layouts.error', ['errorName' => 'insufficient_payment'])
+                                <label for="pic_id" class="text-dark">Nama PIC</label>
+                                <select name="pic_id" id="" class="bg-light form-control @error('pic_id') is-invalid @enderror" value="{{old('pic_id')}}" required>
+                                    @foreach ($crews as $crew)
+                                        <option value="{{ $crew->id }}" {{ old('pic_id', $crew->id) == $crew->id ? 'selected' : '' }}>{{ $crew->name }}</option>
+                                    @endforeach
+                                </select>
+                                @include('layouts.error', ['errorName' => 'pic_id'])
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer text-right" onclick="this.form.submit()">
+                        <a href="{{ route('superadmin.form.vehicle.inspection', $autoDetail->id) }}" class="btn btn-dark ">Kembali</a>
+                        <button name="next_type" value="print" class="btn btn-outline-danger">Simpan & BUAT PDF</button>
+                        <button name="next_type" value="next" class="btn btn-danger">Selanjutnya</button>
+                    </div>
                 </form>
-            </div>
-            <div class="card-footer text-right">
-                <a href="#" class="btn btn-dark ">Kembali</a>
-                <a href="#" class="btn btn-outline-danger">Simpan & Buat PDF</a>
-                <a href="#" class="btn btn-danger">Selanjutnya</a>
             </div>
         </div>
     </div>

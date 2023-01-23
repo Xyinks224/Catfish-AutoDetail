@@ -3,20 +3,12 @@
 ])
 
 @section('title')
-Form Auto Detailing - Home
+Form Auto Detailing - Finish
 @endsection
 
 @section('content')
 <div class="content">
     <div class="container">
-        <div class="alert alert-danger alert-dismissible fade show">
-            <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
-                aria-label="Close">
-                <i class="nc-icon nc-simple-remove"></i>
-            </button>
-            <span>This is a notification with close button.</span>
-        </div>
-
         <h6>Alur Pengerjaan</h6>
         <div class="card-group">
             <div class="card card-stats bg-dark border-danger">
@@ -109,15 +101,17 @@ Form Auto Detailing - Home
 
         <div class="card mt-4">
             <div class="card-header text-center mt-4">
-                <h5 class="text-danger"><b>Kerjakan Autodetailing</b></h5>
+                <h5 class="text-danger"><b>Autodetailing Selesai!</b></h5>
             </div>
             <div class="card-body text-center">
                 <img src="{{ asset('paper') . '/' . ("img/car-1.png") }}" alt="">
-                <p>Selamat datang di Catfish Autodetail App, fitur Kerjakan Autodetailing adalah aktifitas sistem sebagai asisten anda untuk membantu menyediakan dokumen otomatis sesuai dengan SOP yang berlaku di Catfish Autodetail Indonesia.</p>
+                <p>
+                    Terimakasih pengerjaan autodetail ORDER ID <b>{{ $autoDetail->order_id }}</b> atas nama customer <b>{{ $autoDetail->customer->name }}</b>, tipe <b>{{ $autoDetail->vehicle->type == '2_wheels' ? 'Motor' : 'Mobil' }}</b> merk <b>{{ $autoDetail->vehicle->merk }}</b> model <b>{{ $autoDetail->vehicle->model }}</b> nopol <b>{{ $autoDetail->vehicle->license_plate }}</b> pilihan paket <b>{{ $autoDetail->product->name }}</b> telah selesai dilakukan.
+                </p>
             </div>
             <div class="card-footer text-center">
-                <p class="card-category">Klik mulai untuk melakukan pengerjaan autodetailing !</p>
-                <a href="{{ route('superadmin.form.start') }}" class="btn btn-danger">Start</a>
+                <p class="card-category">Klik Finish untuk melakukan pengerjaan autodetailing berikutnya !</p>
+                <a href="{{ route('superadmin.form.home') }}" class="btn btn-danger">Finish</a>
             </div>
         </div>
     </div>

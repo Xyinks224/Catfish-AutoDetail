@@ -20,6 +20,7 @@ class AutoDetail extends Model
         'note_payment',
         'paid_amount',
         'minus_amount',
+        'inspection_date',
         'fuel_total',
         'front_left_tire',
         'front_right_tire',
@@ -45,6 +46,7 @@ class AutoDetail extends Model
         'date_delivery',
         'crew_delivery',
         'receiver_delivery',
+        'vehicle_condition',
         'delivery_evidence_1',
         'delivery_evidence_2',
         'delivery_evidence_3',
@@ -69,5 +71,25 @@ class AutoDetail extends Model
     public function crew()
     {
         return $this->belongsTo('App\Crew', 'crew_id', 'id');
+    }
+
+    public function inspector()
+    {
+        return $this->belongsTo('App\Crew', 'crew_id', 'id');
+    }
+
+    public function pic()
+    {
+        return $this->belongsTo('App\Crew', 'crew_id', 'id');
+    }
+
+    public function getPaidFormatAttribute()
+    {
+        return 'Rp.'.number_format($this->paid_amount);
+    }
+
+    public function getMinusFormatAttribute()
+    {
+        return 'Rp.'.number_format($this->minus_amount);
     }
 }

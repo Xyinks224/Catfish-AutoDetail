@@ -3,7 +3,7 @@
 ])
 
 @section('title')
-Customer
+Invoice DP
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@ Customer
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Crew List</h4>
+                    <h4 class="card-title"> Invoice DP</h4>
                     @if (session()->has('success'))
                     <div class="alert alert-success" role="alert">
                         {{session()->get('success')}}
@@ -24,28 +24,27 @@ Customer
                         <table class="table" id="dataTable">
                             <thead class="text-white bg-dark">
                                 <tr>
-                                    <th>#</th>
+                                    <th>ORDER ID</th>
                                     <th>Nama</th>
-                                    <th>Nomor Telepon</th>
-                                    <th>Email</th>
-                                    <th>Alamat</th>
+                                    <th>Produk Yang Dipilih</th>
+                                    <th>Harga Produk</th>
+                                    <th>Down Payment</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no = 1 ?>
-                                @foreach ($customers as $customer)
+                                @foreach ($autoDetails as $autoDetail)
                                     <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $customer->name }}</td>
-                                        <td>{{ $customer->phone_number }}</td>
-                                        <td>{{ $customer->email }}</td>
-                                        <td>{{ $customer->address }}</td>
+                                        <td>{{ $autoDetail->order_id }}</td>
+                                        <td>{{ $autoDetail->customer->name }}</td>
+                                        <td>{{ $autoDetail->product->name }}</td>
+                                        <td>{{ $autoDetail->product->price_format }}</td>
+                                        <td>{{ $autoDetail->paid_amount }}</td>
                                         <td>
                                             <div class="row">
-                                                {{-- <a href="{{ route('superadmin.customer.show', $customer->id) }}" class="btn btn-info" ><i class="fa fa-eye"></i></a> --}}
-                                                <a href="{{ route('superadmin.customer.edit', $customer->id) }}" class="btn btn-warning" ><i class="fa fa-edit"></i></a>
-                                                <form action="{{ route('superadmin.customer.destroy', $customer->id) }}" method="POST">
+                                                <a href="#" class="btn btn-info" ><i class="fa fa-eye"></i></a>
+                                                <a href="#" class="btn btn-warning" ><i class="fa fa-edit"></i></a>
+                                                <form action="#" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-danger" style="background-color: red;" type="submit">

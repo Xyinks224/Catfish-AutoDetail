@@ -107,7 +107,6 @@ Form Auto Detailing - Invoice DP
                 @csrf
                 @method('PUT')
                 <div class="card-body">
-                    <h6 class="mb-3">Informasi Data Diri</h6>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -126,8 +125,8 @@ Form Auto Detailing - Invoice DP
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="dp_date" class="text-dark">Tanggal Down Payment</label>
-                                <input name="down_payment_date" type="date" class="bg-light form-control @error('down_payment_date') is-invalid @enderror" value="{{old('down_payment_date')}}" required>
-                                @include('layouts.error', ['errorName' => 'down_payment_date'])
+                                <input name="date_down_payment" type="date" class="bg-light form-control @error('date_down_payment') is-invalid @enderror" value="{{old('date_down_payment', $autoDetail->date_down_payment ?? '')}}" required>
+                                @include('layouts.error', ['errorName' => 'date_down_payment'])
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -155,8 +154,8 @@ Form Auto Detailing - Invoice DP
                             <div class="form-group">
                                 <label for="payment_method" class="text-dark">Metode Pembayaran</label>
                                 <select name="payment_method" class="bg-light form-control @error('payment_method') is-invalid @enderror" value="{{old('payment_method')}}" required  id="">
-                                    <option value="transfer" {{ old('payment_method') == 'transfer' ? 'selected' : '' }}>Transfer</option>
-                                    <option value="tunai" {{ old('payment_method') == 'tunai' ? 'selected' : '' }}>Tunai</option>
+                                    <option value="transfer" {{ old('payment_method', $autoDetail->payment_method ?? '') == 'transfer' ? 'selected' : '' }}>Transfer</option>
+                                    <option value="tunai" {{ old('payment_method', $autoDetail->payment_method ?? '') == 'tunai' ? 'selected' : '' }}>Tunai</option>
                                 </select>
                                 @include('layouts.error', ['errorName' => 'payment_method'])
                             </div>
@@ -173,21 +172,21 @@ Form Auto Detailing - Invoice DP
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="note_payment" class="text-dark">Catatan Tambahan</label>
-                                <input type="text" name="note_payment" class="bg-light form-control @error('note_payment') is-invalid @enderror" value="{{old('note_payment')}}" required>
+                                <input type="text" name="note_payment" class="bg-light form-control @error('note_payment') is-invalid @enderror" value="{{old('note_payment', $autoDetail->note_payment ?? '')}}" required>
                                 @include('layouts.error', ['errorName' => 'note_payment'])
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="paid_amount" class="text-dark">Down Payment</label>
-                                <input name="paid_amount" type="number" class="bg-light form-control @error('paid_amount') is-invalid @enderror" value="{{old('paid_amount')}}" required>
+                                <input name="paid_amount" type="number" class="bg-light form-control @error('paid_amount') is-invalid @enderror" value="{{old('paid_amount', $autoDetail->paid_amount ?? '')}}" required>
                                 @include('layouts.error', ['errorName' => 'type'])
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="minus_amount" class="text-dark">Kekurangan</label>
-                                <input name="minus_amount" type="number" class="bg-light form-control @error('minus_amount') is-invalid @enderror" value="{{old('minus_amount')}}" required>
+                                <input name="minus_amount" type="number" class="bg-light form-control @error('minus_amount') is-invalid @enderror" value="{{old('minus_amount', $autoDetail->minus_amount ?? '')}}" required>
                                 @include('layouts.error', ['errorName' => 'minus_amount'])
                             </div>
                         </div>

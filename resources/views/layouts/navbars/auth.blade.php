@@ -28,44 +28,44 @@
                         </p>
                     </a>
                     <div class="collapse show">
-                        {{-- <ul class="nav">
-                            <li class="{{ request()->is('superadmin/auto-detail-form/vehicle-received') ? 'active' : '' }}">
-                                <a href="{{ route('superadmin.form.vehicle.received') }}">
+                        <ul class="nav">
+                            <li class="{{ request()->is('superadmin/list/vehicle-received') ? 'active' : '' }}">
+                                <a href="{{ route('superadmin.list.vehicle.received') }}">
                                     <span class="sidebar-mini-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ __('o') }}</span>
                                     <span class="sidebar-normal">{{ __(' Kendaraan Diterima ') }}</span>
                                 </a>
                             </li>
-                            <li class="{{ request()->is('superadmin/auto-detail-form/invoice-dp') ? 'active' : '' }}">
-                                <a href="{{ route('superadmin.form.invoice.dp') }}">
+                            <li class="{{ request()->is('superadmin/list/invoice-dp') ? 'active' : '' }}">
+                                <a href="{{ route('superadmin.list.invoice.dp') }}">
                                     <span class="sidebar-mini-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ __('o') }}</span>
                                     <span class="sidebar-normal">{{ __(' Invoice DP ') }}</span>
                                 </a>
                             </li>
-                            <li class="{{ request()->is('superadmin/auto-detail-form/vehicle-inspection') ? 'active' : '' }}">
-                                <a href="{{ route('superadmin.form.vehicle.inspection') }}">
+                            <li class="{{ request()->is('superadmin/list/vehicle-inspection') ? 'active' : '' }}">
+                                <a href="{{ route('superadmin.list.vehicle.inspection') }}">
                                     <span class="sidebar-mini-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ __('o') }}</span>
                                     <span class="sidebar-normal">{{ __(' Inspeksi Kendaraan ') }}</span>
                                 </a>
                             </li>
-                            <li class="{{ request()->is('superadmin/auto-detail-form/warrant') ? 'active' : '' }}">
-                                <a href="{{ route('superadmin.form.warrant') }}">
+                            <li class="{{ request()->is('superadmin/list/warrant') ? 'active' : '' }}">
+                                <a href="{{ route('superadmin.list.warrant') }}">
                                     <span class="sidebar-mini-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ __('o') }}</span>
                                     <span class="sidebar-normal">{{ __(' SPK Pekerjaan ') }}</span>
                                 </a>
                             </li>
-                            <li class="{{ request()->is('superadmin/auto-detail-form/invoice-payment') ? 'active' : '' }}">
-                                <a href="{{ route('superadmin.form.invoice.payment') }}">
+                            <li class="{{ request()->is('superadmin/list/invoice-payment') ? 'active' : '' }}">
+                                <a href="{{ route('superadmin.list.invoice.payment') }}">
                                     <span class="sidebar-mini-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ __('o') }}</span>
                                     <span class="sidebar-normal">{{ __(' Invoice Pelunasan ') }}</span>
                                 </a>
                             </li>
-                            <li class="{{ request()->is('superadmin/auto-detail-form/vehicle-delivery') ? 'active' : '' }}">
-                                <a href="{{ route('superadmin.form.vehicle.delivery') }}">
+                            <li class="{{ request()->is('superadmin/list/vehicle-delivery') ? 'active' : '' }}">
+                                <a href="{{ route('superadmin.list.vehicle.delivery') }}">
                                     <span class="sidebar-mini-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ __('o') }}</span>
                                     <span class="sidebar-normal">{{ __(' Kendaraan Diserahkan ') }}</span>
                                 </a>
                             </li>
-                        </ul> --}}
+                        </ul>
                     </div>
                 </li>
                 <li class="{{ request()->is('superadmin/product*') ? 'active' : '' }}">
